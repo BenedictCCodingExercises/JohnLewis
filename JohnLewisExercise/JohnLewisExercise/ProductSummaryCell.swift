@@ -13,6 +13,10 @@ class ProductSummaryCell: UICollectionViewCell {
 
     static let reuseIdentifier = "ProductSummaryCell"
 
+    @IBOutlet var imageView: UIImageView!
+
     @IBOutlet var titleLabel: UILabel!
+
+    @IBOutlet var priceLabel: UILabel!
 
 }

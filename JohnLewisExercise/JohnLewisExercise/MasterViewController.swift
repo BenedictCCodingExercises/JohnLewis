@@ -18,9 +18,17 @@ class MasterViewController: UIViewController {
         case objects(service: Service)
     }
 
-    var dependancies = Dependencies.missing
+    var dependancies = Dependencies.missing {
+        didSet {
+            if case .objects(let service) = dependancies {
+                self.imageCache = ImageCache(service: service)
+            }
+        }
+    }
 
+    var imageCache: ImageCache?
 
+    
     fileprivate enum State {
         case empty
         case fetching(Task)
@@ -30,7 +38,7 @@ class MasterViewController: UIViewController {
 
     fileprivate var state = State.empty
 
-    @IBOutlet private var collectionView: UICollectionView!
+    @IBOutlet fileprivate var collectionView: UICollectionView!
     
 
     //MARK: View life cycle
@@ -120,7 +128,34 @@ extension MasterViewController: UICollectionViewDataSource, UICollectionViewDele
 
     private func configure(_ cell: ProductSummaryCell, with summary: ProductSummary) {
         cell.titleLabel.text = summary.title
-        "TODO:"
+        cell.priceLabel.text = summary.price.now
+
+        cell.imageView.image = nil
+        //Is the image cached?
+        if let image = imageCache?.cachedImage(for: summary.imageURL) {
+            cell.imageView.image = image
+        } else {
+            //Attempt to fetch the image
+            imageCache?.fetchImage(for: summary.imageURL) { image in
+                if let image = image {
+                    self.refresh(image: image, ofCellRepresenting: summary)
+                }
+            }
+        }
+    }
+
+
+    private func refresh(image: UIImage, ofCellRepresenting summary: ProductSummary) {
+        guard case .loaded(let response) = state else {
+            return
+        }
+        let summaries = response.summaries
+
+        guard let summaryIndex = summaries.index(of: summary),
+            let cell = collectionView.cellForItem(at: [0, summaryIndex]) as? ProductSummaryCell else {
+            return
+        }
+
+        cell.imageView.image = image
     }
 }
-

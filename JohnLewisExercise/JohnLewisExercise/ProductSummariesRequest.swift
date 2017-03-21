@@ -1,16 +1,15 @@
- //
- //  ProductSummariesRequest.swift
- //  JohnLewisExercise
- //
- //  Created by Benedict Cohen on 21/03/2017.
- //  Copyright © 2017 Benedict Cohen. All rights reserved.
- //
+//
+//  ProductSummariesRequest.swift
+//  JohnLewisExercise
+//
+//  Created by Benedict Cohen on 21/03/2017.
+//  Copyright © 2017 Benedict Cohen. All rights reserved.
+//
 
- import Foundation
+import Foundation
 
 
-
- struct ProductSummariesRequest: Request {
+struct ProductSummariesRequest: Request {
 
     typealias ResponseType = ProductSummariesResponse
 
@@ -20,37 +19,28 @@
         }
         return URLRequest(url: url)
     }
- }
+}
 
 
- //TODO: It would make more sense to centralise the errors rather than having individual errors for each response type.
- enum ProductSummariesResponseError: Error {
-    case missingURLResponse
-    case unexpectedStatusCode
-    case missingData
-    case invalidResponseBody
- }
-
-
- struct ProductSummariesResponse: Response {
+struct ProductSummariesResponse: Response {
     typealias RequestType = ProductSummariesRequest
 
     internal var request: RequestType
     let summaries: [ProductSummary]
 
     init(request: RequestType, data: Data?, urlResponse: URLResponse?, error: Error?) throws {
-        //Check we're in good shape
+        //Check that we're in good shape
         if let error = error {
             throw error
         }
         guard let urlResponse = urlResponse as? HTTPURLResponse else {
-            throw ProductSummariesResponseError.missingURLResponse
+            throw ResponseError.missingURLResponse
         }
         guard urlResponse.statusCode == 200 else {
-            throw ProductSummariesResponseError.unexpectedStatusCode
+            throw ResponseError.unexpectedStatusCode
         }
         guard let data = data else {
-            throw ProductSummariesResponseError.missingData
+            throw ResponseError.missingData
         }
 
         //Set the properties
@@ -59,20 +49,20 @@
         self.summaries = try productSummaries(from: json)
     }
 
- }
+}
 
 
- private func productSummaries(from json: Any) throws -> [ProductSummary] {
+private func productSummaries(from json: Any) throws -> [ProductSummary] {
     guard let root = json as? [String: Any],
         let products = root["products"] as? [Any] else {
-            throw ProductSummariesResponseError.invalidResponseBody
+            throw ResponseError.invalidResponseBody
     }
 
     return try products.map({ try productSummary(from: $0) })
- }
+}
 
 
- private func productSummary(from json: Any) throws -> ProductSummary {
+private func productSummary(from json: Any) throws -> ProductSummary {
     guard let root = json as? [String: Any],
         let productID = root["productId"] as? String,
         let price = root["price"] as? [String: String],
@@ -84,10 +74,10 @@
         let currency = price["currency"],
         let title = root["title"] as? String,
         let imageURLString = root["image"] as? String,
-        let imageURL = URL(string: imageURLString)
+        let imageURL = URL(string: "https:" + imageURLString) //The imageURLs have the protocol missing. Very strange.
         else {
-            throw ProductSummariesResponseError.invalidResponseBody
+            throw ResponseError.invalidResponseBody
     }
     let summary = ProductSummary(productID: productID, price: (was: was, then1: then1, then2: then2, now: now, uom: uom, currency: currency), title: title, imageURL: imageURL)
     return summary
- }
+}

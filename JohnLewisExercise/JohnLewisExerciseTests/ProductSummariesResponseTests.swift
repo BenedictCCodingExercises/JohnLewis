@@ -47,8 +47,8 @@ class ProductSummariesResponseTests: XCTestCase {
         do {
             let _ = try ProductSummariesResponse(request: request, data: data, urlResponse: urlResponse, error: nil)
             XCTFail()
-        } catch let actual as ProductSummariesResponseError {
-            let expected = ProductSummariesResponseError.unexpectedStatusCode
+        } catch let actual as ResponseError {
+            let expected = ResponseError.unexpectedStatusCode
             XCTAssertEqual(actual, expected)
         } catch {
             XCTFail()
