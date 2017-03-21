@@ -95,7 +95,6 @@ class MasterViewController: UIViewController {
 }
 
 
-
 extension MasterViewController: UICollectionViewDataSource, UICollectionViewDelegate  {
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -107,8 +106,21 @@ extension MasterViewController: UICollectionViewDataSource, UICollectionViewDele
 
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fatalError()
+        guard case .loaded(let response) = state else {
+            fatalError()
+        }
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductSummaryCell.reuseIdentifier, for: indexPath) as! ProductSummaryCell
+        let summary = response.summaries[indexPath.item]
+        configure(cell, with: summary)
+
+        return cell
     }
 
+
+    private func configure(_ cell: ProductSummaryCell, with summary: ProductSummary) {
+        cell.titleLabel.text = summary.title
+        "TODO:"
+    }
 }
 

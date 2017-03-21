@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		823177BF1E81674A005B9FDE /* search.json in Resources */ = {isa = PBXBuildFile; fileRef = 823177BE1E81674A005B9FDE /* search.json */; };
 		8292DD081E81374F0031B32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8292DD071E81374F0031B32C /* AppDelegate.swift */; };
 		8292DD0A1E81374F0031B32C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8292DD091E81374F0031B32C /* MasterViewController.swift */; };
 		8292DD0D1E81374F0031B32C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8292DD0B1E81374F0031B32C /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		823177BE1E81674A005B9FDE /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
 		8292DD041E81374F0031B32C /* JohnLewisExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JohnLewisExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8292DD071E81374F0031B32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8292DD091E81374F0031B32C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		823177BC1E8164A0005B9FDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8292DD4C1E8163F80031B32C /* ProductSummaryCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		823177BD1E816725005B9FDE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				823177BE1E81674A005B9FDE /* search.json */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		8292DCFB1E81374F0031B32C = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +136,7 @@
 				8292DD071E81374F0031B32C /* AppDelegate.swift */,
 				8292DD091E81374F0031B32C /* MasterViewController.swift */,
 				8292DD191E8137840031B32C /* DetailsViewController.swift */,
-				8292DD4C1E8163F80031B32C /* ProductSummaryCell.swift */,
+				823177BC1E8164A0005B9FDE /* Views */,
 				8292DD0B1E81374F0031B32C /* Main.storyboard */,
 			);
 			name = Controller;
@@ -149,6 +167,7 @@
 		8292DD2D1E81441E0031B32C /* JohnLewisExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
+				823177BD1E816725005B9FDE /* Resources */,
 				8292DD3A1E8145DE0031B32C /* ServiceTests.swift */,
 				8292DD481E8154FF0031B32C /* ProductSummariesRequestTests.swift */,
 				8292DD491E8154FF0031B32C /* ProductSummariesResponseTests.swift */,
@@ -252,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823177BF1E81674A005B9FDE /* search.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

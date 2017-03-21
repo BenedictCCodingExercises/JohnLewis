@@ -21,12 +21,19 @@ class ProductSummariesResponseTests: XCTestCase {
         return json.data(using: .utf8)!
     }
 
-    func newHTTPURLResponse(url string: String = "http://example.com", statusCode: Int = 200, httpVersion: String? = nil, headerFields: [String : String]? = nil) -> HTTPURLResponse {
+    func newHTTPURLResponse(url string: String = "https://api.johnlewis.com/v1/products/search?q=dishwasher&key=Wu1Xqn3vNrd1p7hqkvB6hEu0G9OrsYGb&pageSize=20", statusCode: Int = 200, httpVersion: String? = nil, headerFields: [String : String]? = nil) -> HTTPURLResponse {
         let url = URL(string: string)!
         return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: httpVersion, headerFields: headerFields)!
     }
 
-    //MARK: Tests
+    //MARK: Valid response tests
+
+    func testValidResponse() throws {
+        XCTFail()
+    }
+
+
+    //MARK: Invalid responses tests
 
     func testInvalidJSON() {
         XCTFail()

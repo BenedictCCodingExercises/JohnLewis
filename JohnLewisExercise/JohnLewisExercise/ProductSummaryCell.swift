@@ -12,5 +12,7 @@ import UIKit
 class ProductSummaryCell: UICollectionViewCell {
 
     static let reuseIdentifier = "ProductSummaryCell"
-    
+
+    @IBOutlet var titleLabel: UILabel!
+
 }
