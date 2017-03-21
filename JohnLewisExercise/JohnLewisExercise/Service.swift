@@ -11,8 +11,19 @@ import Foundation
 
 class Service {
 
-    let session = URLSession()
+    //MARK: State
 
+    let session: URLSession
+
+
+    //MARK: Instance life cycle
+
+    init(sessionConfiguration: URLSessionConfiguration = .default) {
+        session = URLSession(configuration: sessionConfiguration)
+    }
+
+
+    //MARK: Request equeuing
 
     func enqueue<T: Request>(request: T, completion: @escaping (Task, Result<T.ResponseType>) -> Void) -> Task where T.ResponseType.RequestType == T {
         //Create the request
@@ -53,5 +64,4 @@ class Service {
 
         return progress
     }
-
 }

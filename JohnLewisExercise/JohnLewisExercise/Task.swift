@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol Task {
+protocol Task: class { //We conform to class so we can use identifier equality
     func cancel()
 }
 
