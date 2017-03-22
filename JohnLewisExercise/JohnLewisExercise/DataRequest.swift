@@ -15,10 +15,6 @@ struct DataRequest: Request {
 
     let url: URL
 
-    init(url: URL) {
-        self.url = url
-    }
-
     func urlRequest() throws -> URLRequest {
         return URLRequest(url: url)
     }

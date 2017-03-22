@@ -70,6 +70,7 @@
 		82D77B051E81867B007454E6 /* DataResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataResponseTests.swift; sourceTree = "<group>"; };
 		82D77B071E82845A007454E6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		82D77B091E828ACE007454E6 /* DataRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequestTests.swift; sourceTree = "<group>"; };
+		82D77B0B1E82A640007454E6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +110,7 @@
 		8292DCFB1E81374F0031B32C = {
 			isa = PBXGroup;
 			children = (
+				82D77B0B1E82A640007454E6 /* README.md */,
 				8292DD061E81374F0031B32C /* JohnLewisExercise */,
 				8292DD2D1E81441E0031B32C /* JohnLewisExerciseTests */,
 				8292DD051E81374F0031B32C /* Products */,
