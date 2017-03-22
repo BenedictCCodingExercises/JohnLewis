@@ -14,9 +14,15 @@ class ProductSummariesResponseTests: XCTestCase {
 
     //MARK: Factories
 
-    func newJSONData() -> Data {
-        let json = "{}"
+    func newValidJSONData() -> Data {
+        let json = "{\"products\": [{\"productId\":\"1913470\",\"type\":\"product\",\"title\":\"Bosch SMV53M40GB Fully Integrated Dishwasher\",\"code\":\"88701205\",\"averageRating\":4.5854,\"reviews\":123,\"price\":{\"was\":\"\",\"then1\":\"\",\"then2\":\"\",\"now\":\"449.00\",\"uom\":\"\",\"currency\":\"GBP\"},\"image\":\"//johnlewis.scene7.com/is/image/JohnLewis/234326372?\",\"additionalServices\":[\"2 year guarantee included\",\"5 years Added Care for your home appliance (includes guarantee period) Â£95.00\"],\"displaySpecialOffer\":\"\",\"promoMessages\":{\"priceMatched\":\"\",\"offer\":\"\",\"customPromotionalMessage\":\"\",\"bundleHeadline\":\"\",\"customSpecialOffer\":{}},\"colorSwatches\":[],\"colorSwatchSelected\":0,\"colorWheelMessage\":\"\",\"outOfStock\":false,\"emailMeWhenAvailable\":false,\"availabilityMessage\":\"\",\"compare\":true,\"fabric\":\"\"}] }"
         return json.data(using: .utf8)!
+    }
+
+    func newSummaries() -> [ProductSummary] {
+        return [
+            ProductSummary(productID: "1913470", price: (was: "", then1: "", then2: "", now: "449.00", uom: "", currency: "GBP"), title: "Bosch SMV53M40GB Fully Integrated Dishwasher", imageURL: URL(string: "http://johnlewis.scene7.com/is/image/JohnLewis/234326372?")!)
+        ]
     }
 
     func newHTTPURLResponse(url string: String = "https://api.johnlewis.com/v1/products/search?q=dishwasher&key=Wu1Xqn3vNrd1p7hqkvB6hEu0G9OrsYGb&pageSize=20", statusCode: Int = 200, httpVersion: String? = nil, headerFields: [String : String]? = nil) -> HTTPURLResponse {
@@ -24,23 +30,41 @@ class ProductSummariesResponseTests: XCTestCase {
         return HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: httpVersion, headerFields: headerFields)!
     }
 
+
     //MARK: Valid response tests
 
     func testValidResponse() throws {
-        XCTFail()
+        let request = ProductSummariesRequest()
+        let data = newValidJSONData()
+        let urlResponse = newHTTPURLResponse()
+        let actual = try ProductSummariesResponse(request: request, data: data, urlResponse: urlResponse, error: nil)
+        let expectedSummaries = newSummaries()
+
+        XCTAssertEqual(actual.summaries, expectedSummaries)
     }
 
 
     //MARK: Invalid responses tests
 
     func testInvalidJSON() {
-        XCTFail()
+        let request = ProductSummariesRequest()
+        let data = "{}".data(using: .utf8)!
+        let urlResponse = newHTTPURLResponse()
+        do {
+            let _ = try ProductSummariesResponse(request: request, data: data, urlResponse: urlResponse, error: nil)
+            XCTFail()
+        } catch let actual as ResponseError {
+            let expected = ResponseError.invalidResponseBody
+            XCTAssertEqual(actual, expected)
+        } catch {
+            XCTFail()
+        }
     }
 
 
     func testNon200Response() {
         let request = ProductSummariesRequest()
-        let data = newJSONData()
+        let data = newValidJSONData()
         let urlResponse = newHTTPURLResponse(statusCode: 404)
         do {
             let _ = try ProductSummariesResponse(request: request, data: data, urlResponse: urlResponse, error: nil)

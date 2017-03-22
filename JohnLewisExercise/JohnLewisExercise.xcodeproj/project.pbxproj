@@ -29,6 +29,7 @@
 		82D77B041E818619007454E6 /* ProductSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D77B031E818619007454E6 /* ProductSummaryTests.swift */; };
 		82D77B061E81867B007454E6 /* DataResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D77B051E81867B007454E6 /* DataResponseTests.swift */; };
 		82D77B081E82845A007454E6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D77B071E82845A007454E6 /* RootViewController.swift */; };
+		82D77B0A1E828ACE007454E6 /* DataRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D77B091E828ACE007454E6 /* DataRequestTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		82D77B031E818619007454E6 /* ProductSummaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductSummaryTests.swift; sourceTree = "<group>"; };
 		82D77B051E81867B007454E6 /* DataResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataResponseTests.swift; sourceTree = "<group>"; };
 		82D77B071E82845A007454E6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		82D77B091E828ACE007454E6 /* DataRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequestTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				8292DD481E8154FF0031B32C /* ProductSummariesRequestTests.swift */,
 				8292DD491E8154FF0031B32C /* ProductSummariesResponseTests.swift */,
 				82D77B051E81867B007454E6 /* DataResponseTests.swift */,
+				82D77B091E828ACE007454E6 /* DataRequestTests.swift */,
 				8292DD301E81441E0031B32C /* Info.plist */,
 			);
 			path = JohnLewisExerciseTests;
@@ -335,6 +338,7 @@
 				8292DD4A1E8154FF0031B32C /* ProductSummariesRequestTests.swift in Sources */,
 				8292DD3B1E8145DE0031B32C /* ServiceTests.swift in Sources */,
 				82D77B061E81867B007454E6 /* DataResponseTests.swift in Sources */,
+				82D77B0A1E828ACE007454E6 /* DataRequestTests.swift in Sources */,
 				82D77B041E818619007454E6 /* ProductSummaryTests.swift in Sources */,
 				8292DD4B1E8154FF0031B32C /* ProductSummariesResponseTests.swift in Sources */,
 			);

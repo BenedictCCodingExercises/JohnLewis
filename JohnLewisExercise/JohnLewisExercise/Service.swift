@@ -38,7 +38,7 @@ class Service {
 
     //MARK: Instance life cycle
 
-    init(delegate: ServiceDelegate, sessionConfiguration: URLSessionConfiguration = .default) {
+    init(delegate: ServiceDelegate?, sessionConfiguration: URLSessionConfiguration = .default) {
         self.delegate = delegate
         session = URLSession(configuration: sessionConfiguration)
     }
