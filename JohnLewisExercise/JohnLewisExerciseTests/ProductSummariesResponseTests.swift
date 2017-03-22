@@ -10,8 +10,6 @@ import XCTest
 @testable import JohnLewisExercise
 
 
-
-
 class ProductSummariesResponseTests: XCTestCase {
 
     //MARK: Factories
